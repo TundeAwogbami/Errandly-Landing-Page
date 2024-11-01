@@ -5,10 +5,10 @@ import instagram from "../assets/instagram.svg";
 
 const Navbar = () => {
   return (
-    <nav className="bg-black text-white h-[80px] text-lg font-bold">
-      <div className="container m-auto flex justify-between">
+    <nav className="bg-black text-white h-[80px] text-lg font-bold sticky top-0 z-50">
+      <div className="container flex justify-between m-auto">
         <ul className="flex justify-between items-center flex-auto h-[80px]">
-          <li className="border-b-2 h-full flex items-center">
+          <li className="flex items-center h-full border-b-2">
             <a href="#">Home</a>
           </li>
           <li>
@@ -35,7 +35,7 @@ const Navbar = () => {
 
         <div className="flex h-[80px] gap-2 justify-center items-center ">
           <button>Log in</button>
-          <button className="rounded-full bg-purple py-2 px-4">Sign Up</button>
+          <button className="px-4 py-2 rounded-full bg-purple">Sign Up</button>
         </div>
       </div>
     </nav>
