@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import facebook from "../assets/facebook.svg";
 import twitter from "../assets/twitter.svg";
 import instagram from "../assets/instagram.svg";
 
-const Navbar = () => {
+const Navbar = ({ setShowPopUp }) => {
   return (
-    <nav className="bg-black text-white h-[80px] text-lg font-bold sticky top-0 z-50">
+    <nav className="bg-black text-white h-[80px] text-lg font-bold sticky top-0 z-40">
       <div className="container flex justify-between m-auto">
         <ul className="flex justify-between items-center flex-auto h-[80px]">
           <li className="flex items-center h-full border-b-2">
@@ -35,7 +35,14 @@ const Navbar = () => {
 
         <div className="flex h-[80px] gap-2 justify-center items-center ">
           <button>Log in</button>
-          <button className="px-4 py-2 rounded-full bg-purple">Sign Up</button>
+          <button
+            className="px-4 py-2 rounded-full bg-purple"
+            onClick={() => {
+              setShowPopUp(true);
+            }}
+          >
+            Sign Up
+          </button>
         </div>
       </div>
     </nav>

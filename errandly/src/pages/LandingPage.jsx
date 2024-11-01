@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import clock from "../assets/clock.png";
 import envelope from "../assets/envelope.png";
@@ -7,10 +7,21 @@ import Navbar from "../components/Navbar";
 import heroImage from "../assets/hero-image.jpg";
 import avatar from "../assets/avatar.png";
 import Footer from "../components/Footer";
+import SignUpPopUp from "../components/SignUpPopUp";
 
 const LandingPage = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+
+  const closePopUp = (event) => {
+    console.log("Handle click called");
+    event.stopPropagation();
+    event.preventDefault();
+    setShowPopUp(false);
+  };
+
   return (
-    <>
+    <div className={showPopUp ? "h-screen overflow-hidden" : ""}>
+      {showPopUp && <SignUpPopUp closePopUp={closePopUp} />}
       <div className="bg-purple flex justify-center text-white h-[160px]">
         <div className="container flex items-center justify-between">
           {/* Logo */}
@@ -53,7 +64,9 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <Navbar />
+
+      {/* Navbar */}
+      <Navbar setShowPopUp={setShowPopUp} />
 
       {/* Hero section */}
 
@@ -247,8 +260,9 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Footer */}
       <Footer />
-    </>
+    </div>
   );
 };
 
