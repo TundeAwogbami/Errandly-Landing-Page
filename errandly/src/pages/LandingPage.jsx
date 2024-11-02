@@ -7,21 +7,34 @@ import Navbar from "../components/Navbar";
 import heroImage from "../assets/hero-image.jpg";
 import avatar from "../assets/avatar.png";
 import Footer from "../components/Footer";
-import SignUpPopUp from "../components/SignUpPopUp";
+import PopUp from "../components/PopUp";
 
 const LandingPage = () => {
   const [showPopUp, setShowPopUp] = useState(false);
+  const [popUpType, setPopUpType] = useState("");
 
   const closePopUp = (event) => {
     console.log("Handle click called");
     event.stopPropagation();
     event.preventDefault();
     setShowPopUp(false);
+    setPopUpType("");
+  };
+
+  const handlePopUp = (type) => {
+    setShowPopUp(true);
+    setPopUpType(type);
   };
 
   return (
     <div className={showPopUp ? "h-screen overflow-hidden" : ""}>
-      {showPopUp && <SignUpPopUp closePopUp={closePopUp} />}
+      {showPopUp && (
+        <PopUp
+          closePopUp={closePopUp}
+          handlePopUp={handlePopUp}
+          popUpType={popUpType}
+        />
+      )}
       <div className="bg-purple flex justify-center text-white h-[160px]">
         <div className="container flex items-center justify-between">
           {/* Logo */}
@@ -66,7 +79,7 @@ const LandingPage = () => {
       </div>
 
       {/* Navbar */}
-      <Navbar setShowPopUp={setShowPopUp} />
+      <Navbar handlePopUp={handlePopUp} />
 
       {/* Hero section */}
 
@@ -248,7 +261,7 @@ const LandingPage = () => {
             </div>
             <div className="p-5 text-white bg-black rounded-3xl h-[400px] w-[250px]">
               <div className="rounded-full bg-white h-[50px] w-[50px] mb-4"></div>
-              <h1 className="pb-10 text-xl font-semibold text-center">
+              <h1 className="pb-10 text-3xl font-semibold text-center">
                 Receive Delivery
               </h1>
               <p className="text-2xl text-center">

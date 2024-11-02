@@ -3,7 +3,7 @@ import facebook from "../assets/facebook.svg";
 import twitter from "../assets/twitter.svg";
 import instagram from "../assets/instagram.svg";
 
-const Navbar = ({ setShowPopUp }) => {
+const Navbar = ({ handlePopUp }) => {
   return (
     <nav className="bg-black text-white h-[80px] text-lg font-bold sticky top-0 z-40">
       <div className="container flex justify-between m-auto">
@@ -34,11 +34,17 @@ const Navbar = ({ setShowPopUp }) => {
         </div>
 
         <div className="flex h-[80px] gap-2 justify-center items-center ">
-          <button>Log in</button>
+          <button
+            onClick={() => {
+              handlePopUp("signin");
+            }}
+          >
+            Log in
+          </button>
           <button
             className="px-4 py-2 rounded-full bg-purple"
             onClick={() => {
-              setShowPopUp(true);
+              handlePopUp("signup");
             }}
           >
             Sign Up
