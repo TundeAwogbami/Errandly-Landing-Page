@@ -7,9 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        helvetica: ['Helvetica', 'Arial', 'sans-serif'],
-        helveticaRounded: ['Helvetica Rounded', 'sans-serif'],
-        helveticaCompressed: ['Helvetica Compressed', 'sans-serif'],
+        'helvetica': ['Helvetica', 'sans-serif'],
+        'helvetica-compressed': ['Helvetica Compressed', 'sans-serif'],
+        'helvetica-rounded-bold': ['Helvetica Rounded Bold', 'sans-serif'],
+        'helvetica-bold': ['Helvetica', 'sans-serif'],
       },
       screens: {
         sm: '480px',
@@ -26,8 +27,8 @@ export default {
         'purple-transparent': 'rgba(50, 22, 63, 0.4)'
       },
       backgroundImage: {
-        'about-image': "url('/src/assets/bike.png')",
-        'feature-image': "url('/src/assets/map.png')",
+        'about-image': "url('/src/assets/images/bike.png')",
+        'feature-image': "url('/src/assets/images/map.png')",
       }
     },
   },

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import facebook from "../assets/facebook.svg";
-import twitter from "../assets/twitter.svg";
-import instagram from "../assets/instagram.svg";
+import facebook from "../assets/images/facebook.svg";
+import twitter from "../assets/images/twitter.svg";
+import instagram from "../assets/images/instagram.svg";
 
 const Navbar = ({ handlePopUp }) => {
   return (
@@ -18,7 +18,14 @@ const Navbar = ({ handlePopUp }) => {
             <a href="#features">Features</a>
           </li>
           <li>
-            <a href="#contact">contact</a>
+            <a
+              href="#contact"
+              onClick={() => {
+                handlePopUp("contact");
+              }}
+            >
+              contact
+            </a>
           </li>
         </ul>
         <div className="flex h-[80px] gap-8 justify-center items-center mx-20">
