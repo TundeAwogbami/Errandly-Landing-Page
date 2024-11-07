@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import Botton from "./Botton";
-
+import axiosInstance from "../utils/axiosInstance";
+import { signUpValidationSchema, validateForm } from "../utils/validation";
 const SignUpForm = ({ handlePopUp }) => {
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -17,48 +20,86 @@ const SignUpForm = ({ handlePopUp }) => {
     setForm({ ...form, [name]: value });
   };
 
+  const signUp = async (form) => {
+    setIsLoading(true);
+    try {
+      const { confirmPassword, ...newForm } = form;
+      const response = await axiosInstance.post("api/auth/register", newForm);
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const validationErrors = validateForm(form, signUpValidationSchema);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length === 0) signUp(form);
+  };
+
   return (
     <>
-      <form action="" className="flex flex-col gap-4">
+      <form action="" className="flex flex-col gap-6">
         <Form
+          isLoading={isLoading}
           value={form.name}
           title="Name"
           type="text"
           handleChange={handleChange}
           name="name"
+          error={errors.name}
         />
         <Form
+          isLoading={isLoading}
           handleChange={handleChange}
           value={form.email}
           title="Email"
           type="email"
           name="email"
+          error={errors.email}
         />
         <Form
+          isLoading={isLoading}
           handleChange={handleChange}
           value={form.phone}
           title="Phone"
           type="tel"
           name="phone"
+          error={errors.phone}
         />
         <Form
+          isLoading={isLoading}
           handleChange={handleChange}
           value={form.password}
           title="Password"
           type="password"
           name="password"
+          error={errors.password}
         />
         <Form
+          isLoading={isLoading}
           handleChange={handleChange}
           value={form.confirmPassword}
           title="Confirm Password"
           type="password"
           name="confirmPassword"
+          error={errors.confirmPassword}
         />
         <Botton
+          isLoading={isLoading}
           img=""
           title={{ name: "Sign Up", styles: "text-white text-2xl font-bold" }}
           styles="bg-purple rounded-xl mt-10"
+          handleSubmit={handleSubmit}
         />
       </form>
       <div className="flex justify-center gap-2 mt-2 mb-10">

@@ -8,6 +8,9 @@ import ContactForm from "./ContactForm";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
+  const logInWithGoogle = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/google`;
+  };
 
   return (
     <AnimatePresence>
@@ -23,7 +26,7 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
           }
         }}
       >
-        <div className="py-8 px-14 bg-black w-[500px] m-auto">
+        <div className="py-10 px-14 bg-black w-[500px] m-auto">
           {popUpType === "signup" && <SignUpForm handlePopUp={handlePopUp} />}
           {popUpType === "signin" && <LogInForm handlePopUp={handlePopUp} />}
           {popUpType === "contact" && <ContactForm />}
@@ -38,6 +41,7 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
               }}
               img={google}
               styles="bg-white rounded-full w-full flex mb-4"
+              handleSubmit={logInWithGoogle}
             />
             <Botton
               title={{
