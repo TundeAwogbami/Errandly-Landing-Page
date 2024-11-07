@@ -39,9 +39,5 @@ tmp/
 # Test coverage reports
 coverage/
 
-# Expo or React Native
-.expo/
-.expo-shared/
-
 # macOS
 .DS_Store

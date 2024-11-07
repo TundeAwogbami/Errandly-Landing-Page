@@ -13,9 +13,13 @@ const userSchema = new mongoose.Schema(
     provider: {
       type: String,
       enum: ["local", "google", "facebook"],
-      required: true,
+      default: "local",
     }, // Field to track OAuth provider
-    googleId: { type: String, unique: true },
+    googleId: {
+      type: String,
+      unique: true, // Enforces uniqueness
+      sparse: true, // Allows multiple null values in the field
+    },
     facebookId: { type: String },
   },
   { timestamps: true }
