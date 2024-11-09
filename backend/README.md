@@ -33,9 +33,13 @@ PORT=your-port
 JWT_SECRET=your-jwt-secret
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
+FACEBOOK_APP_ID=your-facebook-app-id
+FACEBOOK_APP_SECRET=your-facebook-app-secret
 SESSION_SECRET=your-session-secret
 NODE_ENV=development
 FRONTEND_URL=your-frontend-url
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-email-password
 ```
 
 4. Start the application

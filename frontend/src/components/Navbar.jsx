@@ -24,7 +24,7 @@ const Navbar = ({ handlePopUp }) => {
                 handlePopUp("contact");
               }}
             >
-              contact
+              Contact
             </a>
           </li>
         </ul>

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: String, unique: true, sparse: true },
     password: { type: String },
     role: {
       type: String,
@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema(
       unique: true, // Enforces uniqueness
       sparse: true, // Allows multiple null values in the field
     },
-    facebookId: { type: String },
+    facebookId: {
+      type: String,
+      unique: true, // Enforces uniqueness
+      sparse: true, // Allows multiple null values in the field
+    },
   },
   { timestamps: true }
 );

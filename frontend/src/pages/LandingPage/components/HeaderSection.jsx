@@ -12,7 +12,7 @@ const HeaderSection = () => {
           {/* Logo */}
           <div className="flex items-center gap-2 ">
             <img src={logo} alt="Logo" className="h-[60px] w-[60px]" />
-            <p className="text-2xl font-helvetica-rounded">Errandly</p>
+            <p className="text-2xl font-helvetica-rounded">errandly</p>
           </div>
 
           {/* Info */}

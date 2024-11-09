@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="flex justify-between item-center">
           <div>
             <img src={logo} alt="" />
-            <p className="text-3xl font-bold">Errandly</p>
+            <p className="text-3xl font-bold">errandly</p>
           </div>
           <div>
             <h3 className="pb-4 text-3xl font-bold">Our services</h3>

@@ -1,5 +1,5 @@
 import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { Strategy as FacebookStrategy } from "passport-facebook";
 import dotenv from "dotenv";
 import User from "../models/User.js";
 import Token from "../models/Token.js";
@@ -17,23 +17,23 @@ passport.deserializeUser(async (id, done) => {
   done(null, user);
 });
 
-export default passport.use(
-  new GoogleStrategy(
+passport.use(
+  new FacebookStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5001/api/auth/google/redirect",
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: "http://localhost:5001/api/auth/facebook/redirect",
       passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, done) => {
       try {
-        let user = await User.findOne({ googleId: profile.id });
+        let user = await User.findOne({ facebookId: profile.id });
         if (!user) {
           user = await User.create({
             name: profile.displayName,
             email: profile.emails[0].value,
             provider: profile.provider,
-            googleId: profile.id,
+            facebookId: profile.id,
           });
         }
         const tokenUser = {
@@ -69,7 +69,7 @@ export default passport.use(
 
         return done(null, user);
       } catch (error) {
-        console.error("Error during Google authentication:", error);
+        console.error("Error during Facebook authentication:", error);
         return done(error, null);
       }
     }

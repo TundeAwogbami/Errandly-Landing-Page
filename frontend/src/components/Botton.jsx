@@ -3,9 +3,15 @@ import React from "react";
 const Botton = ({ title, styles, img, handleSubmit, isLoading }) => {
   return (
     <>
-      <button className={`p-2 ${styles}`} onClick={handleSubmit}>
+      <button
+        className={`p-2 ${styles}`}
+        onClick={handleSubmit}
+        disabled={isLoading}
+      >
         {img && <img src={img} alt="" />}
-        <p className={`text-center flex gap-2 justify-center items-center ${title.styles} `}>
+        <p
+          className={`text-center flex gap-2 justify-center items-center ${title.styles} `}
+        >
           {title.name}{" "}
           {isLoading && (
             <svg

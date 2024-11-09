@@ -12,6 +12,10 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
     window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/google`;
   };
 
+  const logInWithFacebook = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/facebook`;
+  };
+
   return (
     <AnimatePresence>
       <motion.div
@@ -30,7 +34,11 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
           {popUpType === "signup" && <SignUpForm handlePopUp={handlePopUp} />}
           {popUpType === "signin" && <LogInForm handlePopUp={handlePopUp} />}
           {popUpType === "contact" && <ContactForm />}
-          <div className={popUpType === "contact" ? "hidden" : ""}>
+          <div
+            className={
+              popUpType === "contact" || popUpType === "survey" ? "hidden" : ""
+            }
+          >
             <p className="text-center">
               Continue with one of the following options
             </p>
@@ -50,6 +58,7 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
               }}
               img={facebook}
               styles="bg-white rounded-full w-full flex mb-4"
+              handleSubmit={logInWithFacebook}
             />
 
             <p className="text-center text-white">

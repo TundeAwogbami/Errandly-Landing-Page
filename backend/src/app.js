@@ -8,6 +8,7 @@ import routes from "./routes/index.js";
 import passport from "passport";
 import session from "express-session";
 import "./strategies/google-strategy.js";
+import "./strategies/facebook-strategy.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -37,7 +38,7 @@ mongoose
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Routes
+// Google Oauth
 app.get(
   "/api/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -46,6 +47,21 @@ app.get(
 app.get(
   "/api/auth/google/redirect",
   passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res) => {
+    console.log("sucessfully authenticated");
+    res.redirect(`${process.env.FRONTEND_URL}`);
+  }
+);
+
+//Facebook Oauth
+app.get(
+  "/api/auth/facebook",
+  passport.authenticate("facebook", { scope: ["email", "public_profile"] })
+);
+
+app.get(
+  "/api/auth/facebook/redirect",
+  passport.authenticate("facebook", { failureRedirect: "/login" }),
   (req, res) => {
     console.log("sucessfully authenticated");
     res.redirect(`${process.env.FRONTEND_URL}`);
