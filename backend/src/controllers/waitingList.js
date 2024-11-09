@@ -5,6 +5,10 @@ export const addToWaitingList = async (req, res) => {
   try {
     const { email } = req.body;
 
+    if (!email) {
+      return res.status(400).json({ message: "email is required." });
+    }
+
     const existingEmail = await WaitingList.findOne({ email });
     if (existingEmail) {
       res.status(400).json({ message: "Already joined waiting list" });

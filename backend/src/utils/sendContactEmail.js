@@ -1,8 +1,8 @@
-import sendEmail from "./nodemailer";
+import sendEmail from "./nodemailer.js";
 
 export const sendContactEmail = async (userEmail, userMessage) => {
   const recipient = process.env.SUPPORT_EMAIL;
-  const subject = `New Contact Message from ${userName}`;
+  const subject = `New Contact Message from Client`;
   const html = `
       <p><strong>From:</strong> ${"Client"} (${userEmail})</p>
       <p><strong>Message:</strong></p>

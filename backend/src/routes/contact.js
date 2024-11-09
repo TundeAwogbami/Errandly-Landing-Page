@@ -1,9 +1,8 @@
 import express from "express";
+import { sendMessage } from "../controllers/contact.js";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  res.status(200).json({ message: "Hello World" });
-});
+router.post("/", sendMessage);
 
 export default router;
