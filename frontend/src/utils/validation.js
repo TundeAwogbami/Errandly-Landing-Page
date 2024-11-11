@@ -2,6 +2,19 @@ export const validateName = (string, min = 3) => {
   if (string.trim().length < min) {
     return "Name is too short";
   }
+  if (string.trim().length > 255) {
+    return "Name is cannot be more than 255 characters";
+  }
+  return null;
+};
+
+export const validateMessage = (string) => {
+  if (string.trim().length < 3) {
+    return "Message is too short";
+  }
+  if (string.trim().length > 255) {
+    return "Message is cannot be more than 255 characters";
+  }
   return null;
 };
 
