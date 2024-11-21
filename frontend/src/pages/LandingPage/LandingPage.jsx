@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import PopUp from "../../components/PopUp";
@@ -11,6 +11,15 @@ import HowSection from "./components/HowSection";
 const LandingPage = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [popUpType, setPopUpType] = useState("");
+
+  const homeRef = useRef(null);
+  const aboutRef = useRef(null);
+  const featuresRef = useRef(null);
+
+  const scrollToSection = (ref) => (event) => {
+    event.preventDefault();
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const closePopUp = (event) => {
     event.stopPropagation();
@@ -25,7 +34,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className={showPopUp ? "h-screen overflow-hidden" : ""}>
+    <div className={showPopUp ? "h-screen overflow-hidden" : ""} ref={homeRef}>
       {showPopUp && (
         <PopUp
           closePopUp={closePopUp}
@@ -39,16 +48,22 @@ const LandingPage = () => {
       <HeaderSection />
 
       {/* Navbar */}
-      <Navbar handlePopUp={handlePopUp} />
+      <Navbar
+        handlePopUp={handlePopUp}
+        scrollToSection={scrollToSection}
+        homeRef={homeRef}
+        aboutRef={aboutRef}
+        featuresRef={featuresRef}
+      />
 
       {/* Hero section */}
-      <HeroSection />
+      <HeroSection handlePopUp={handlePopUp} />
 
       {/* About section */}
-      <AboutSection />
+      <AboutSection aboutRef={aboutRef} />
 
       {/* Features */}
-      <FeaturesSection />
+      <FeaturesSection featuresRef={featuresRef} />
 
       {/* How section */}
       <HowSection />

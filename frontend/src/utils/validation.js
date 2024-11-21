@@ -70,6 +70,7 @@ export const signUpValidationSchema = {
 
 export const signInValidationSchema = {
   email: { required: true, validate: validateEmail },
+  password: { required: true, validate: validatePassword },
 };
 
 export const validateForm = (form, schema) => {

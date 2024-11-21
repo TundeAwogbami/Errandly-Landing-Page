@@ -13,10 +13,11 @@ export default {
         'helvetica-bold': ['Helvetica', 'sans-serif'],
       },
       screens: {
-        sm: '480px',
+        xs: '480px',   // Extra small devices
+        sm: '640px',
         md: '768px',
-        lg: '976px',
-        xl: '1440px',
+        lg: '1024px',
+        xl: '1280px',
       },
       colors: {
         'purple': '#32163F',
@@ -24,7 +25,8 @@ export default {
         'brown': '#592A20',
         'light-green': '#F5FDFD',
         'black-transparent': 'rgba(0, 0, 0, 0.5)',
-        'purple-transparent': 'rgba(50, 22, 63, 0.4)'
+        'purple-transparent': 'rgba(50, 22, 63, 0.4)',
+        'light-pink': '#FBF5FD',
       },
       backgroundImage: {
         'about-image': "url('/src/assets/images/bike.png')",

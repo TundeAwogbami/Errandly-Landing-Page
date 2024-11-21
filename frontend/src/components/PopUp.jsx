@@ -6,6 +6,7 @@ import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 import ContactForm from "./ContactForm";
 import { motion, AnimatePresence } from "framer-motion";
+import SurveyForm from "./SurveyForm";
 
 const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
   const logInWithGoogle = () => {
@@ -30,10 +31,11 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
           }
         }}
       >
-        <div className="py-10 px-14 bg-black w-[500px] m-auto">
+        <div className="py-10 px-14 bg-black w-[300px] md:w-[500px] m-auto">
           {popUpType === "signup" && <SignUpForm handlePopUp={handlePopUp} />}
           {popUpType === "signin" && <LogInForm handlePopUp={handlePopUp} />}
           {popUpType === "contact" && <ContactForm />}
+          {popUpType === "survey" && <SurveyForm />}
           <div
             className={
               popUpType === "contact" || popUpType === "survey" ? "hidden" : ""

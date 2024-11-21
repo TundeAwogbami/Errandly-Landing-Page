@@ -14,6 +14,7 @@ const ContactForm = () => {
     email: "",
     message: "",
   });
+  const [completed, setCompleted] = useState({ success: true, message: "" });
 
   const formSchema = {
     email: { required: true, validation: validateEmail },
@@ -31,14 +32,23 @@ const ContactForm = () => {
       setIsLoading(true);
       await axiosInstance.post("/api/contact", form);
       setForm({ email: "", message: "" });
+      setCompleted({
+        success: true,
+        message: "Successfully contacted us!",
+      });
     } catch (error) {
       console.error(error);
+      setCompleted({
+        success: false,
+        message: error?.response?.data?.message || "Something went wrong!",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
-  const submit = () => {
+  const submit = (event) => {
+    event.preventDefault();
     const formErrors = validateForm(form, formSchema);
     setErrors(formErrors);
     if (Object.keys(formErrors).length !== 0) return;
@@ -50,6 +60,18 @@ const ContactForm = () => {
       <h1 className="pb-10 text-3xl font-bold text-white font-helveticaCompressed">
         Lets Connect
       </h1>
+      {completed.message && (
+        <div
+          className={`p-2 mb-1 overflow-hidden text-white rounded-lg text-nowrap flex justify-between transition-all ${
+            completed.success ? " bg-green-700" : " bg-red-700"
+          }`}
+        >
+          <p>{completed.message}</p>{" "}
+          <button onClick={() => setCompleted({ success: true, message: "" })}>
+            x
+          </button>
+        </div>
+      )}
       <form action="" className="flex flex-col gap-2 text-white">
         <div className="mb-4">
           <label htmlFor="email">your email</label>

@@ -24,8 +24,8 @@ export const getSurveyQuestions = async (req, res) => {
 
 export const createSurveyResponse = async (req, res) => {
   try {
-    const { userType, responses } = req.body;
-    await SurveyResponse.create({ userType, responses });
+    const { email, userType, responses } = req.body;
+    await SurveyResponse.create({ email, userType, responses });
     res.status(201).json({ message: "Successfully completed survey" });
   } catch (error) {
     res

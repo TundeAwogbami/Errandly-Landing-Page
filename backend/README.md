@@ -40,6 +40,7 @@ NODE_ENV=development
 FRONTEND_URL=your-frontend-url
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-email-password
+SUPPORT_EMAIL=your-support-email
 ```
 
 4. Start the application

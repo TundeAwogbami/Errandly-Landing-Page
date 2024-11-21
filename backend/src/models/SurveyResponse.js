@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const SurveyResponseSchema = mongoose.Schema(
   {
+    email: { type: String, required: true, unique: true },
     userType: {
       type: String,
       enum: ["Rider", "Business", "Personal"],
