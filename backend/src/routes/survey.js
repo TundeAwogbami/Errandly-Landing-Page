@@ -1,7 +1,7 @@
 import express from "express";
 import {
   createSurveyResponse,
-  getSurvey,
+  // getSurvey,
   getSurveyQuestions,
 } from "../controllers/survey.js";
 
@@ -9,5 +9,5 @@ const router = express.Router();
 
 router.post("/responses", createSurveyResponse);
 router.get("/questions", getSurveyQuestions);
-router.get("/", getSurvey);
+// router.get("/", getSurvey);
 export default router;

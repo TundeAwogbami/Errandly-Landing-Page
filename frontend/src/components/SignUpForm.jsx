@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Form from "./Form";
-import Botton from "./Botton";
+import Input from "./Input";
+import Button from "./Button";
 import axiosInstance from "../utils/axiosInstance";
 import { signUpValidationSchema, validateForm } from "../utils/validation";
 const SignUpForm = ({ handlePopUp }) => {
@@ -49,7 +49,7 @@ const SignUpForm = ({ handlePopUp }) => {
   return (
     <>
       <form action="" className="flex flex-col gap-6">
-        <Form
+        <Input
           isLoading={isLoading}
           value={form.name}
           title="Name"
@@ -58,7 +58,7 @@ const SignUpForm = ({ handlePopUp }) => {
           name="name"
           error={errors.name}
         />
-        <Form
+        <Input
           isLoading={isLoading}
           handleChange={handleChange}
           value={form.email}
@@ -67,7 +67,7 @@ const SignUpForm = ({ handlePopUp }) => {
           name="email"
           error={errors.email}
         />
-        <Form
+        <Input
           isLoading={isLoading}
           handleChange={handleChange}
           value={form.phone}
@@ -76,7 +76,7 @@ const SignUpForm = ({ handlePopUp }) => {
           name="phone"
           error={errors.phone}
         />
-        <Form
+        <Input
           isLoading={isLoading}
           handleChange={handleChange}
           value={form.password}
@@ -85,7 +85,7 @@ const SignUpForm = ({ handlePopUp }) => {
           name="password"
           error={errors.password}
         />
-        <Form
+        <Input
           isLoading={isLoading}
           handleChange={handleChange}
           value={form.confirmPassword}
@@ -94,7 +94,7 @@ const SignUpForm = ({ handlePopUp }) => {
           name="confirmPassword"
           error={errors.confirmPassword}
         />
-        <Botton
+        <Button
           isLoading={isLoading}
           img=""
           title={{ name: "Sign Up", styles: "text-white text-2xl font-bold" }}

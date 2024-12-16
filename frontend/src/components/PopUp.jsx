@@ -1,5 +1,5 @@
 import React from "react";
-import Botton from "./Botton";
+import Button from "./Button";
 import facebook from "../assets/images/facebook.png";
 import google from "../assets/images/google.png";
 import SignUpForm from "./SignUpForm";
@@ -44,7 +44,7 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
             <p className="text-center">
               Continue with one of the following options
             </p>
-            <Botton
+            <Button
               title={{
                 name: "Google",
                 styles: "text-center font-bold text-xl w-[85%]",
@@ -53,7 +53,7 @@ const PopUp = ({ closePopUp, handlePopUp, popUpType }) => {
               styles="bg-white rounded-full w-full flex mb-4"
               handleSubmit={logInWithGoogle}
             />
-            <Botton
+            <Button
               title={{
                 name: "Facebook",
                 styles: "text-center font-bold text-xl w-[85%]",

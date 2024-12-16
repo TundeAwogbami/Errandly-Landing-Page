@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Form from "./Form";
-import Botton from "./Botton";
+import Input from "./Input";
+import Button from "./Button";
 import { signInValidationSchema, validateForm } from "../utils/validation";
 import axiosInstance from "../utils/axiosInstance";
 
@@ -48,16 +48,16 @@ const LogInForm = ({ handlePopUp }) => {
         Enter your login details to continue
       </p>
       <form action="" className="flex flex-col gap-4">
-        <Form
+        <Input
           isLoading={isLoading}
           handleChange={handleChange}
-          value={form.email}
+          value={input.email}
           title="Email"
           type="email"
           name="email"
           error={errors.email}
         />
-        <Form
+        <Input
           isLoading={isLoading}
           handleChange={handleChange}
           value={form.password}
@@ -71,7 +71,7 @@ const LogInForm = ({ handlePopUp }) => {
             Forgot password?
           </a>
         </span>
-        <Botton
+        <Button
           isLoading={isLoading}
           img=""
           title={{ name: "Continue", styles: "text-white text-2xl font-bold" }}

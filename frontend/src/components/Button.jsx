@@ -1,6 +1,6 @@
 import React from "react";
 
-const Botton = ({ title, styles, img, handleSubmit, isLoading }) => {
+const Button = ({ title, styles, img, handleSubmit, isLoading }) => {
   return (
     <>
       <button
@@ -40,4 +40,4 @@ const Botton = ({ title, styles, img, handleSubmit, isLoading }) => {
   );
 };
 
-export default Botton;
+export default Button;

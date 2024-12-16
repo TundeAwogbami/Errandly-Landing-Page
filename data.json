@@ -1,0 +1,149 @@
+{
+  "data": [
+    {
+      "_id": "673603d36565cc893fb5437c",
+      "userType": "Rider",
+      "questionText": "What are your main goals as a delivery rider/logistics company?",
+      "options": [
+        "Maximize daily income",
+        "Buid long-term customer relationships",
+        "Expand delivery services (e.g., hire more riders",
+        "Increase visibility and reputation"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54379",
+      "userType": "Rider",
+      "questionText": "What tools or platforms do you currently use to find delivery jobs?",
+      "options": [
+        "Phone calls from customers",
+        "Online platforms (e.g., ride-hailing or delivery apps)",
+        "Social media groups",
+        "Word of mouth"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54376",
+      "userType": "Rider",
+      "questionText": "What are your biggest challenges when it comes to securing delivery jobs?",
+      "options": [
+        "Uncertain job availability",
+        "Difficulty finding customers",
+        "Unpredictable or fluctuating demand",
+        "Low pay rates",
+        "Long wait times between jobs"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb5437b",
+      "userType": "Rider",
+      "questionText": "What feature(s) would make a delivery platform more useful to you?",
+      "options": [
+        "More consistent job availability",
+        "Real-time tracking for customers and drivers",
+        "Better pay rates or commission structures",
+        "Easier communication with customers",
+        "More flexibility in choosing jobs"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54378",
+      "userType": "Rider",
+      "questionText": "How do you feel about the current level of customer demand in your area?",
+      "options": [
+        "Demand is high and steady",
+        "Demand is inconsistent",
+        "Demand is low and unpredicatable"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54375",
+      "userType": "Rider",
+      "questionText": "What types of deliveries do you typically handle?",
+      "options": [
+        "Parcels (e.g, documents, small items)",
+        "Bulk orders (e.g, multiple packages for businesses)",
+        "Food deliveries",
+        "Other"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54374",
+      "userType": "Rider",
+      "questionText": "How many deliveries do you complete per day, on average?",
+      "options": ["Less than 5", "5-10", "10-20", "More than 20"],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb5437a",
+      "userType": "Rider",
+      "questionText": "How important is real-time tracking of deliveries to you?",
+      "options": [
+        "Extremely important",
+        "Moderately important",
+        "Not important"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54372",
+      "userType": "Rider",
+      "questionText": "What type of delivery service do you provide?",
+      "options": ["Independent rider", "Logistics company"],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54377",
+      "userType": "Rider",
+      "questionText": "What issues do you encounter while completing deliveries?",
+      "options": [
+        "Traffic and delays",
+        "Difficulty in finding locations",
+        "Customer dissatisfaction or miscommunication",
+        "Issues with package handling or damage",
+        "Lack of real-time tracking and visibility"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    },
+    {
+      "_id": "673603d36565cc893fb54373",
+      "userType": "Rider",
+      "questionText": "How long have you been working as a delivery rider/logistics company?",
+      "options": [
+        "Less than one year",
+        "1-2 years",
+        "3-5 years",
+        "More than 5-years"
+      ],
+      "questionType": "multiple-choice",
+      "required": true,
+      "__v": 0
+    }
+  ]
+}

@@ -7,14 +7,14 @@ const questions = [
   {
     userType: "Rider",
     questionText: "What type of delivery service do you provide?",
-    questionType: "multiple-choice",
+    questionType: "text",
     options: ["Independent rider", "Logistics company"],
   },
   {
     userType: "Rider",
     questionText:
       "How long have you been working as a delivery rider/logistics company?",
-    questionType: "multiple-choice",
+    questionType: "text",
     options: [
       "Less than one year",
       "1-2 years",
@@ -25,7 +25,7 @@ const questions = [
   {
     userType: "Rider",
     questionText: "How many deliveries do you complete per day, on average?",
-    questionType: "multiple-choice",
+    questionType: "text",
     options: ["Less than 5", "5-10", "10-20", "More than 20"],
   },
   {
@@ -68,7 +68,7 @@ const questions = [
     userType: "Rider",
     questionText:
       "How do you feel about the current level of customer demand in your area?",
-    questionType: "multiple-choice",
+    questionType: "text",
     options: [
       "Demand is high and steady",
       "Demand is inconsistent",
@@ -90,7 +90,7 @@ const questions = [
   {
     userType: "Rider",
     questionText: "How important is real-time tracking of deliveries to you?",
-    questionType: "multiple-choice",
+    questionType: "text",
     options: ["Extremely important", "Moderately important", "Not important"],
   },
   {
@@ -110,7 +110,7 @@ const questions = [
     userType: "Rider",
     questionText:
       "What are your main goals as a delivery rider/logistics company?",
-    questionType: "multiple-choice",
+    questionType: "text",
     options: [
       "Maximize daily income",
       "Buid long-term customer relationships",

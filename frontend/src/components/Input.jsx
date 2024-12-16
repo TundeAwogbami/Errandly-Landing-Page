@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ title, type, handleChange, name, value, isLoading, error }) => {
+const Input = ({ title, type, handleChange, name, value, isLoading, error }) => {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = () => {
@@ -43,4 +43,4 @@ const Form = ({ title, type, handleChange, name, value, isLoading, error }) => {
   );
 };
 
-export default Form;
+export default Input;

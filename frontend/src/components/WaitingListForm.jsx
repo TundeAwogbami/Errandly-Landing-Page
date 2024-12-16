@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { validateEmail, validateForm } from "../utils/validation";
 import axiosInstance from "../utils/axiosInstance";
 
@@ -6,9 +6,15 @@ const WaitingListForm = ({ handlePopUp }) => {
   const [errors, setErrors] = useState({});
   const [email, setEmail] = useState({ email: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const [joinedWaitingList, setJoinedWaitingList] = useState(() => {
-    return localStorage.getItem("joinedWaitingList");
-  });
+  const [joinedWaitingList, setJoinedWaitingList] = useState("");
+  const [takenSurvey, setTakenSurvey] = useState(false);
+
+  useEffect(() => {
+    setJoinedWaitingList(localStorage.getItem("joinedWaitingList"));
+    setTakenSurvey(
+      JSON.parse(localStorage.getItem("completed_survey") || false)
+    );
+  }, []);
 
   const emailSchema = {
     email: { required: true, validate: validateEmail },
@@ -44,9 +50,13 @@ const WaitingListForm = ({ handlePopUp }) => {
   return (
     <>
       {joinedWaitingList ? (
-        <div className="flex justify-center md:justify-start">
+        <div
+          className={`flex justify-center md:justify-start ${
+            takenSurvey ? "hidden" : ""
+          }`}
+        >
           <button
-            className="px-4 py-2 text-xl font-bold text-white rounded-md bg-purple font-helvetica-rounded"
+            className="px-4 py-2 mx-2 text-xl font-bold text-white rounded-md bg-purple font-helvetica-rounded"
             onClick={() => handlePopUp("survey")}
             disabled={isLoading}
           >

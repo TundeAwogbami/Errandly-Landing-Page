@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Botton from "./Botton";
+import Button from "./Button";
 import axiosInstance from "../utils/axiosInstance";
 import {
   validateEmail,
@@ -107,7 +107,7 @@ const ContactForm = () => {
           <p className="text-sm text-red-600">{errors.message}</p>
         </div>
 
-        <Botton
+        <Button
           img=""
           title={{
             name: "Send Message",

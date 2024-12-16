@@ -11,7 +11,7 @@ export const addToWaitingList = async (req, res) => {
 
     const existingEmail = await WaitingList.findOne({ email });
     if (existingEmail) {
-      res.status(400).json({ message: "Already joined waiting list" });
+      return res.status(400).json({ message: "Already joined waiting list" });
     }
 
     await WaitingList.create({

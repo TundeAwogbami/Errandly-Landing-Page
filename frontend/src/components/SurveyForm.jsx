@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Botton from "./Botton";
+import React, { useEffect, useState } from "react";
+import Button from "./Button";
 import axiosInstance from "../utils/axiosInstance";
-import Select from "./Select";
+import Select from "react-select";
 
 const SurveyForm = () => {
   const [questions, setQuestions] = useState([]);
@@ -10,49 +10,34 @@ const SurveyForm = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
-  const [joinedWaitingList, setJoinedWaitingList] = useState(() => {
-    return localStorage.getItem("joinedWaitingList");
-  });
+  const [error, setError] = useState("");
+  const [joinedWaitingList, setJoinedWaitingList] = useState("");
 
-  const submitSurvey = async () => {
-    try {
-      setIsLoading(true);
-      if (!userType || !joinedWaitingList) return;
-      const response = await axiosInstance.post(`api/survey/responses`, {
-        email: joinedWaitingList,
-        userType,
-        responses: [...surveyForm],
-      });
-      setCompleted(true);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+  useEffect(() => {
+    setJoinedWaitingList(localStorage.getItem("joinedWaitingList"));
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("surveyForm", JSON.stringify(surveyForm));
+  // }, [surveyForm]);
+
+  const isFormValidated = () => {
+    const currentQuestion = questions[questionIndex];
+    const currentAnswer = surveyForm.find(
+      (item) => item.questionId === currentQuestion._id
+    );
+    console.log(currentAnswer);
+    if (currentQuestion?.questionType === "multiple-choice") {
+      return (
+        Array.isArray(currentAnswer?.answer) && currentAnswer.answer.length > 0
+      );
     }
+    return currentAnswer && currentAnswer?.answer?.trim() !== "";
   };
 
-  const onSelect = (event) => {
-    setUserType(event.target.value);
-  };
-
-  const onChange = (event, id) => {
+  const handleChange = (value, id) => {
     const newForm = surveyForm.filter((item) => item.questionId !== id);
-    setSurveyForm([...newForm, { questionId: id, answer: event.target.value }]);
-  };
-
-  const next = (event) => {
-    event.preventDefault();
-    if (questionIndex >= questions.length - 1) {
-      submitSurvey();
-      return;
-    }
-    setQuestionIndex((prev) => prev + 1);
-  };
-
-  const prev = (event) => {
-    event.preventDefault();
-    if (questionIndex === 0) return;
-    setQuestionIndex((prev) => prev - 1);
+    setSurveyForm([...newForm, { questionId: id, answer: value }]);
   };
 
   const loadQuestions = async (event) => {
@@ -66,13 +51,65 @@ const SurveyForm = () => {
       setQuestions(response.data.data);
     } catch (error) {
       console.error(error);
+      setError("something went wrong, try agin later!");
     } finally {
       setIsLoading(false);
     }
   };
 
+  const submitSurvey = async () => {
+    const survey = {
+      email: joinedWaitingList,
+      userType,
+      responses: [...surveyForm],
+    };
+
+    try {
+      setIsLoading(true);
+      if (!userType || !joinedWaitingList) return;
+      const response = await axiosInstance.post(`api/survey/responses`, survey);
+      setCompleted(true);
+      localStorage.setItem("completed_survey", JSON.stringify(true));
+    } catch (error) {
+      console.error(error);
+      setError("something went wrong, try agin later!");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const next = (event) => {
+    event.preventDefault();
+    if (!isFormValidated()) return;
+    if (questionIndex >= questions.length - 1) {
+      submitSurvey();
+      return;
+    }
+    setQuestionIndex((prev) => prev + 1);
+  };
+
+  const prev = (event) => {
+    event.preventDefault();
+    if (isLoading) return;
+    if (questionIndex === 0) return;
+    setQuestionIndex((prev) => prev - 1);
+  };
+
+  const options = [
+    { value: "Personal", label: "For personal errands" },
+    { value: "Business", label: "Deliveries for my business" },
+    { value: "Rider", label: "I am delivery rider/company" },
+  ];
+
+  console.log(surveyForm);
+
   return (
-    <>
+    <form>
+      {error && (
+        <div className="flex justify-between p-2 mb-1 overflow-hidden text-white transition-all bg-red-600 rounded-lg text-nowrap">
+          <p>{error}</p>
+        </div>
+      )}
       {completed ? (
         <div>
           <h1 className="text-4xl text-white">
@@ -80,36 +117,53 @@ const SurveyForm = () => {
           </h1>
         </div>
       ) : (
-        <form action="">
-          {questions.length === 0 && (
-            <Select
-              name="userType"
-              label="What do you want to use Errandly for?"
-              multiple={false}
-              onChange={onSelect}
-              length={questions.length}
-              isLoading={isLoading}
-            />
-          )}
-          {questions.length > 0 &&
-            questions.map((question, index) => (
+        <div>
+          {!questions.length ? (
+            <div>
+              <p className="mb-4 text-4xl text-white transition-all">
+                What do you want to use Errandly for?
+              </p>
               <Select
-                key={index}
-                label={question.questionText}
-                options={question.options}
-                multiple={false}
-                onChange={onChange}
-                length={questions.length}
-                id={question._id}
-                questionIndex={questionIndex}
-                formIndex={index}
+                options={options}
+                required
+                onChange={(type) => setUserType(type.value)}
+                isDisabled={isLoading}
               />
-            ))}
-
-          <br />
+            </div>
+          ) : (
+            questions.map((question, index) => {
+              const options = question.options.map((option) => ({
+                value: option,
+                label: option,
+              }));
+              return (
+                <div
+                  className={index === questionIndex ? "block" : "hidden"}
+                  key={question._id}
+                >
+                  <p className="mb-4 text-4xl text-white transition-all">
+                    {question.questionText}
+                  </p>
+                  <Select
+                    options={options}
+                    required={question.required}
+                    onChange={(selected) => {
+                      const value =
+                        question.questionType === "multiple-choice"
+                          ? selected.map((element) => element.value)
+                          : selected.value;
+                      handleChange(value, question._id);
+                    }}
+                    isDisabled={isLoading}
+                    isMulti={question.questionType === "multiple-choice"}
+                  />
+                </div>
+              );
+            })
+          )}
           <div className="md:flex md:justify-between md:gap-4">
-            {questions.length === 0 && (
-              <Botton
+            {!questions.length ? (
+              <Button
                 title={{
                   name: "Continue",
                   styles: "text-2xl font-bold text-black",
@@ -118,36 +172,37 @@ const SurveyForm = () => {
                 handleSubmit={loadQuestions}
                 isLoading={isLoading}
               />
-            )}
-
-            {questions.length > 0 && (
-              <Botton
-                title={{
-                  name: "<< Previous",
-                  styles: "text-2xl font-bold text-black",
-                }}
-                styles="bg-white rounded-xl mt-4 md:mt-10 w-full"
-                handleSubmit={prev}
-              />
-            )}
-            {questions.length > 0 && (
-              <Botton
-                title={{
-                  name: `${
-                    questionIndex >= questions.length - 1
-                      ? "Submit"
-                      : "Continue >>"
-                  } `,
-                  styles: "text-2xl font-bold text-black",
-                }}
-                styles="bg-white rounded-xl mt-2 md:mt-10 mr-0 w-full"
-                handleSubmit={next}
-              />
+            ) : (
+              <>
+                <Button
+                  title={{
+                    name: "<< Previous",
+                    styles: "text-2xl font-bold text-black",
+                  }}
+                  styles={`bg-white rounded-xl mt-4 md:mt-10 w-full ${
+                    questionIndex === 0 ? "hidden" : ""
+                  }`}
+                  handleSubmit={prev}
+                />
+                <Button
+                  title={{
+                    name: `${
+                      questionIndex >= questions.length - 1
+                        ? "Submit"
+                        : "Next >>"
+                    } `,
+                    styles: "text-2xl font-bold text-black",
+                  }}
+                  styles="bg-white rounded-xl mt-2 md:mt-10 mr-0 w-full"
+                  handleSubmit={next}
+                  isLoading={isLoading}
+                />
+              </>
             )}
           </div>
-        </form>
+        </div>
       )}
-    </>
+    </form>
   );
 };
 

@@ -34,13 +34,13 @@ export const createSurveyResponse = async (req, res) => {
   }
 };
 
-export const getSurvey = async (req, res) => {
-  try {
-    const survey = await SurveyResponse.find().populate("responses.questionId");
-    res.status(201).json(survey);
-  } catch (error) {
-    res
-      .status(400)
-      .json({ message: "Something went wrong", error: error.message });
-  }
-};
+// export const getSurvey = async (req, res) => {
+//   try {
+//     const survey = await SurveyResponse.find().populate("responses.questionId");
+//     res.status(201).json(survey);
+//   } catch (error) {
+//     res
+//       .status(400)
+//       .json({ message: "Something went wrong", error: error.message });
+//   }
+// };
