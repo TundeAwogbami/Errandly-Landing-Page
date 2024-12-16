@@ -26,7 +26,6 @@ const SurveyForm = () => {
     const currentAnswer = surveyForm.find(
       (item) => item.questionId === currentQuestion._id
     );
-    console.log(currentAnswer);
     if (currentQuestion?.questionType === "multiple-choice") {
       return (
         Array.isArray(currentAnswer?.answer) && currentAnswer.answer.length > 0
@@ -100,8 +99,6 @@ const SurveyForm = () => {
     { value: "Business", label: "Deliveries for my business" },
     { value: "Rider", label: "I am delivery rider/company" },
   ];
-
-  console.log(surveyForm);
 
   return (
     <form>
